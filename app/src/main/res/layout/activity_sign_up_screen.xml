@@ -55,12 +55,22 @@
             android:textColorHint="#bbbbbb"
             android:password="true"/>
         <Button
-            android:id="@+id/btnSingIn"
+            android:id="@+id/btnSingUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:layout_margin="4dp"
             android:text="Sign Up"
+            style="@style/DefaultButtonText"
+            android:background="@drawable/button_default_bg"
+            />
+        <Button
+            android:id="@+id/btnReturn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_margin="4dp"
+            android:text="CANCEL"
             style="@style/DefaultButtonText"
             android:background="@drawable/button_default_bg"
             />

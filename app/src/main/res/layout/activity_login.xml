@@ -38,6 +38,8 @@ tools:context=".MainActivity"
         android:text="Sign In"
         style="@style/DefaultButtonText"
         android:background="@drawable/button_default_bg"
+        android:onClick="tosignIn"
+
         />
 </LinearLayout>
 
