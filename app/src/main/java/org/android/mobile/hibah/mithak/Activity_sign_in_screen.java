@@ -30,13 +30,13 @@ public class Activity_sign_in_screen extends Activity {
     List<NameValuePair> params;
     SharedPreferences pref;
     Dialog reset;
-    JSONParser sr;
+    ServerRequest sr;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_screen);
-        Log.d("Activity_sign_in_screen", "AVANT SERVERREQUEST");
-        sr=new JSONParser();
+        Log.d("Activity_sign_in_screen", "START ACTIVITY");
+        sr=new ServerRequest();
 
 
         email=(EditText)findViewById(R.id.email);
@@ -56,24 +56,25 @@ public class Activity_sign_in_screen extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.d("Activity_sign_in_screen", "CLIC BOUTON SIGN IN");
                 emailtext=email.getText().toString();
                 passwordtext=password.getText().toString();
                 params=new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("email", emailtext));
                 params.add(new BasicNameValuePair("password", passwordtext));
 
-                Log.d("Activity_sign_in_screen", "AVANT SERVERREQUEST 2");
-                Log.d("Activity_sign_in_screen", passwordtext);
 
-                JSONParser sr = new JSONParser();
-                JSONObject json = sr.getJSONFromUrl("https://10.0.2.2:8080/login", params);
-                Log.d("Activity_sign_in_screen", "APRES SERVERREQUEST");
-               // Log.d("Activity_sign_in",json.toString());
+                ServerRequest sr = new ServerRequest();
+                Log.d("Activity_sign_in_screen", "APPEL SERVER REQUEST AVANT");
+
+                JSONObject json = sr.getJSON("http://10.0.2.2:8080/login", params);
+                Log.d("Activity_sign_in_screen", "APPEL SERVER REQUEST APRES");
 
 
                 if(json!=null)
                 {
-                    Log.d("Activity_sign_in_screen", "APRES SERVERREQUEST 2");
+                    Log.d("Activity_sign_in_screen","JSON IS NOT NULL");
 
                     try
                         {
@@ -100,6 +101,8 @@ public class Activity_sign_in_screen extends Activity {
                             e.printStackTrace();
                         }
                 }
+                else
+                    Log.d("Activity_sign_in_screen","JSON IS NULL");
             }
         });
 

@@ -27,21 +27,23 @@ package org.android.mobile.hibah.mithak;
         import android.os.AsyncTask;
         import android.util.Log;
 
-public class JSONParser {
+public class ServerRequest {
 
     static InputStream is = null;
     static JSONObject jObj = null;
     static String json = "";
 
 
-    public JSONParser() {
+    public ServerRequest() {
 
     }
 
     public JSONObject getJSONFromUrl(String url, List<NameValuePair> params) {
 
+        Log.d("SERVER REQUEST", "1 AVANT TRY ");
 
         try {
+            Log.d("SERVER REQUEST", "2 APRES TRY 1 ");
 
             DefaultHttpClient httpClient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(url);
@@ -58,8 +60,11 @@ public class JSONParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Log.d("SERVER REQUEST", "3 AVANT TRY 2 ");
 
         try {
+            Log.d("SERVER REQUEST", "4 APRES TRY 2 ");
+
             BufferedReader reader = new BufferedReader(new InputStreamReader(
                     is, "iso-8859-1"), 8);
             StringBuilder sb = new StringBuilder();
@@ -118,7 +123,7 @@ public class JSONParser {
         @Override
         protected JSONObject doInBackground(Params... args) {
 
-            JSONParser request = new JSONParser();
+            ServerRequest request = new ServerRequest();
             JSONObject json = request.getJSONFromUrl(args[0].url,args[0].params);
 
             return json;
